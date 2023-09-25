@@ -12,11 +12,11 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Component
-public class ProductPostgreGateway implements ProductGateway {
+public class ProductMongoDBGateway implements ProductGateway {
 
     private final ProductRepository repository;
 
-    public ProductPostgreGateway(final ProductRepository repository) {
+    public ProductMongoDBGateway(final ProductRepository repository) {
         this.repository = Objects.requireNonNull(repository);
     }
 
@@ -28,7 +28,7 @@ public class ProductPostgreGateway implements ProductGateway {
 
     @Override
     public Product find(final UUID uuid) {
-        final var model = repository.findById(uuid)
+        final var model = repository.findById(uuid.toString())
                 .orElseThrow(() -> new ObjectNotFoundException(String.format("Object %s not found", uuid.toString())));
         return model.toDomain();
     }
@@ -43,6 +43,6 @@ public class ProductPostgreGateway implements ProductGateway {
 
     @Override
     public void delete(final UUID uuid) {
-        repository.deleteById(uuid);
+        repository.deleteById(uuid.toString());
     }
 }

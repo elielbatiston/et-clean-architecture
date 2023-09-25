@@ -4,6 +4,7 @@ import com.encontrotecnico.domain.Product;
 import com.encontrotecnico.domain.ProductGateway;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class CreateProductUseCase {
 
@@ -15,7 +16,7 @@ public class CreateProductUseCase {
 
     public OutputCreateProductDTO execute(final InputCreateProductDTO input) {
         final var product = new Product(
-                null,
+                UUID.randomUUID(),
                 input.name(),
                 input.price()
         );

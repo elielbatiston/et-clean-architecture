@@ -1,17 +1,18 @@
 package com.encontrotecnico.infrastructure.persistence;
 
 import com.encontrotecnico.domain.Product;
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.UUID;
 
-@Entity
-@Table(name = "product")
+@Document(collection = "product")
 public class ProductModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID uuid;
+    @Field("_id")
+    private String uuid;
 
     private String name;
     private Double price;
@@ -19,13 +20,13 @@ public class ProductModel {
     public ProductModel() {
     }
 
-    public ProductModel(final UUID uuid, final String name, final Double price) {
+    public ProductModel(final String uuid, final String name, final Double price) {
         this.uuid = uuid;
         this.name = name;
         this.price = price;
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
@@ -39,7 +40,7 @@ public class ProductModel {
 
     public Product toDomain() {
         return new Product(
-                uuid,
+                UUID.fromString(uuid),
                 name,
                 price
         );
@@ -47,7 +48,7 @@ public class ProductModel {
 
     public static ProductModel fromDomain(Product product) {
         return new ProductModel(
-                product.getUuid(),
+                product.getUuid().toString(),
                 product.getName(),
                 product.getPrice()
         );
