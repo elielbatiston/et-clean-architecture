@@ -1,0 +1,42 @@
+version: '3.2'
+
+services:
+  postgres-auth:
+    image: postgres
+    container_name: pg-authuser
+    command: postgres -c 'max_connections=200'
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=clean-arch
+    ports:
+      - "15432:5432"
+    networks:
+      - encontro-network
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOLODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: on-failure
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: clean
+      MONGO_INITDB_ROOT_PASSWORD: clean
+      MONGO_INITDB_DATABASE: clean-arch
+    ports:
+      - 27017:27017
+
+networks:
+  encontro-network:
+    driver: bridge

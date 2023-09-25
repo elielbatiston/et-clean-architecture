@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "cab80acc-5e46-4f5c-83c4-5a561d55dec4",
+		"name": "X Encontro-Tecnico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28383329"
+	},
+	"item": [
+		{
+			"name": "Clean-Architecture",
+			"item": [
+				{
+					"name": "GET ALL Produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/product",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product/d7cba996-4995-423c-91ae-056b65e644fd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"d7cba996-4995-423c-91ae-056b65e644fd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Produto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product/dd8bba42-046e-4be8-8d9e-5b0c54a3e665",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"dd8bba42-046e-4be8-8d9e-5b0c54a3e665"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \n    \"nome\": \"Eliel\",\n    \"preco\": 1.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/product",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
